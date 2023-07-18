@@ -1,8 +1,49 @@
 /* Handle car model dropdown javascript */
 
-/*Disable model until a make is selected*/
+/*Populate models based on selection from make dropdown*/
 document.getElementById("make").addEventListener("change", function(event) {
     document.getElementById("model").disabled = event.target.value === "makeaselection";
+
+    fetch(carDataPath)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            populateData(data);
+        })
+        .catch(function (err) {
+            console.log('error: ' + err);
+        });
+//Check selected car make and populate model
+    function populateData(data) {
+        console.log("Populate model data...");
+
+        for (var i = 0; i < data.length; i++) {
+            let makeval = document.getElementById("make").value;
+            let tmpMake = data[i].makename;
+            //console.log("Make name - > " + data[i].makename);
+            if(makeval === tmpMake)    {
+                console.log("Populate to make name  - > " + data[i].makename);
+                let modelSelectElement = document.getElementById("model");
+                console.log("Model dropdown len - > " + modelSelectElement.length);
+                modelSelectElement.options.length = 0;
+                iterateModels(data,i)
+
+            }
+        }
+    }
+//Iterate over model dropdown and populate that
+    function iterateModels(data,i) {
+        var modelSelect = document.getElementById("model");
+        for (var j = 0; j < data[i].models.length; j++) {
+            console.log("Model name - > " + data[i].models[j]);
+            let opt = data[i].models[j];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            modelSelect.appendChild(el);
+        }
+    }
 })
 
 /*Set the selected data in html paragraph*/
@@ -32,20 +73,14 @@ fetch(carDataPath)
     });
 function appendData(data) {
     var makeSelect = document.getElementById("make");
+    //console.log("data val - > " + data + " data len - > " + data.length);
     document.getElementById("myData");
-    for (var i = 0; i < data.make.length; i++) {
-        let opt = data.make[i].makename;
+    for (var i = 0; i < data.length; i++) {
+        let opt = data[i].makename;
+        //console.log("Makename - > " + opt);
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
         makeSelect.appendChild(el);
-    }
-    var modelSelect = document.getElementById("model");
-    for (var i = 0; i < data.model.length; i++) {
-        let opt = data.model[i].modelname;
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-        modelSelect.appendChild(el);
     }
 }
