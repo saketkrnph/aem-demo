@@ -16,16 +16,11 @@ document.getElementById("make").addEventListener("change", function(event) {
         });
 //Check selected car make and populate model
     function populateData(data) {
-        console.log("Populate model data...");
-
         for (var i = 0; i < data.length; i++) {
             let makeval = document.getElementById("make").value;
             let tmpMake = data[i].makename;
-            //console.log("Make name - > " + data[i].makename);
             if(makeval === tmpMake)    {
-                console.log("Populate to make name  - > " + data[i].makename);
                 let modelSelectElement = document.getElementById("model");
-                console.log("Model dropdown len - > " + modelSelectElement.length);
                 modelSelectElement.options.length = 0;
                 iterateModels(data,i)
 
@@ -36,7 +31,6 @@ document.getElementById("make").addEventListener("change", function(event) {
     function iterateModels(data,i) {
         var modelSelect = document.getElementById("model");
         for (var j = 0; j < data[i].models.length; j++) {
-            console.log("Model name - > " + data[i].models[j]);
             let opt = data[i].models[j];
             var el = document.createElement("option");
             el.textContent = opt;
@@ -73,11 +67,9 @@ fetch(carDataPath)
     });
 function appendData(data) {
     var makeSelect = document.getElementById("make");
-    //console.log("data val - > " + data + " data len - > " + data.length);
     document.getElementById("myData");
     for (var i = 0; i < data.length; i++) {
         let opt = data[i].makename;
-        //console.log("Makename - > " + opt);
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
