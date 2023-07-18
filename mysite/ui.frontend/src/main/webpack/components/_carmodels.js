@@ -2,11 +2,7 @@
 
 /*Disable model until a make is selected*/
 document.getElementById("make").addEventListener("change", function(event) {
-    if(event.target.value !== "makeaselection") {
-        document.getElementById("model").disabled = false;
-    } else {
-        document.getElementById("model").disabled = true;
-    }
+    document.getElementById("model").disabled = event.target.value === "makeaselection";
 })
 
 /*Set the selected data in html paragraph*/
@@ -15,9 +11,7 @@ document.getElementById("model").addEventListener("change", function(event) {
     let modelval = document.getElementById("model").value;
     var selectionValue = document.getElementById("selectedDataValue").value;
     if(makeval !== "makeaselection" && modelval !== "makeaselection")  {
-        var tempVal = selectionValue + makeval + " make and " + modelval + " model"
-
-        document.getElementById("cardatadisplay").innerHTML = tempVal;
+        document.getElementById("cardatadisplay").innerHTML = selectionValue + makeval + " make and " + modelval + " model";
     }
 })
 
@@ -38,8 +32,7 @@ fetch(carDataPath)
     });
 function appendData(data) {
     var makeSelect = document.getElementById("make");
-
-    var mainContainer = document.getElementById("myData");
+    document.getElementById("myData");
     for (var i = 0; i < data.make.length; i++) {
         let opt = data.make[i].makename;
         var el = document.createElement("option");
