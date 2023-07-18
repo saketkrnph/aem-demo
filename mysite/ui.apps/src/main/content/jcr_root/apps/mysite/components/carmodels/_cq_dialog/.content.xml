@@ -35,22 +35,26 @@
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldDescription="Update the title of dropdown."
+                                                    fieldLabel="Make title"
                                                     name="./makeTitle"/>
                                             <modelTitle
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                                                     fieldDescription="Update the model of dropdown."
+                                                    fieldLabel="Model title"
                                                     name="./modelTitle"/>
                                             <carDataJsonPath
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
                                                     fieldDescription="Provide the path of card data json file"
+                                                    fieldLabel="Car json data path"
                                                     name="./carDataJsonPath"
                                                     rootPath="/content/dam/mysite"/>
                                             <selectedDataValue
                                                     jcr:primaryType="nt:unstructured"
                                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                                    fieldDescription="Text to be displayed once slections are done.."
+                                                    fieldDescription="Text to be displayed once selections are done.."
+                                                    fieldLabel="Text for selections"
                                                     name="./selectedDataValue"/>
                                         </items>
                                     </column>
