@@ -4,5 +4,4 @@
     jcr:description="Car Models"
     jcr:primaryType="cq:Component"
     jcr:title="Car models"
-    sling:resourceSuperType="core/wcm/components/image"
     componentGroup="My Site - Content"/>
